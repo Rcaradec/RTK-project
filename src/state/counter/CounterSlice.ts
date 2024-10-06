@@ -3,9 +3,9 @@
 //     -> Reducer
 //     -> State
 
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface CounterState {
+export interface CounterState {
   value: number;
 }
 
@@ -20,9 +20,20 @@ const initialState: CounterState = {
 const counterSlice = createSlice({
   name: "count",
   initialState,
-  // To do: Add Actions
-  reducers: {},
+  reducers: {
+    increment: (state) => {
+      state.value += 1;
+    },
+    decrement: (state) => {
+      state.value -= 1;
+    },
+    incrementByAmount: (state, action: PayloadAction<number>) => {
+      state.value += action.payload;
+    },
+  },
 });
+
+export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 
 // Because we're using createSlice from RTK
 // We have access to a reducer for the counter

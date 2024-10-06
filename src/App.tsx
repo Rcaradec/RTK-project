@@ -1,12 +1,13 @@
-import "./App.css";
 import { Typography } from "@mui/material";
-
+import "./App.css";
+import Counter from "./components/Counter";
 function App() {
   return (
     <>
-      <Typography variant="h1" gutterBottom>
-        Redux / RTK initial Commit
+      <Typography variant="h2" sx={{ margin: "30px 0" }}>
+        Basic Redux Counter
       </Typography>
+      <Counter />
     </>
   );
 }
