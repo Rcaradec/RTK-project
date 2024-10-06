@@ -1,17 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../state/store";
+import { AppDispatch, RootState } from "../state/store";
 import { Box, Button, Typography } from "@mui/material";
 import {
   decrement,
   increment,
+  incrementAsync,
   incrementByAmount,
 } from "../state/counter/CounterSlice";
 
 const Counter = () => {
   const count = useSelector((state: RootState) => state.counter.value);
-  const dispatch = useDispatch();
-
-  const testAmount: number = 10;
+  const dispatch = useDispatch<AppDispatch>();
 
   return (
     <>
@@ -37,9 +36,12 @@ const Counter = () => {
         </Button>
         <Button
           variant="outlined"
-          onClick={() => dispatch(incrementByAmount(testAmount))}
+          onClick={() => dispatch(incrementByAmount(10))}
         >
-          Increment by {testAmount}
+          Increment by 10
+        </Button>
+        <Button variant="outlined" onClick={() => dispatch(incrementAsync(6))}>
+          Async Increment By 6
         </Button>
       </Box>
     </>
